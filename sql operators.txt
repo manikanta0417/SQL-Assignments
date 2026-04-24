@@ -1,0 +1,229 @@
+ MySQL  localhost:33060+ ssl  operator  SQL > create table products (product_name varchar(20), price decimal(10,2),stock_quantity int);
+Query OK, 0 rows affected (0.0681 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > insert into products ( product_name, price, stock_quantity) values ('Laptop', 55000.00, 15), ('Mobile', 20000.00, 30), ('Headphones', 250.00, 50), ( 'Keyboard', 500.00, 9), ( 'Mouse', 500.00, 60),('pen',100,20);
+Query OK, 6 rows affected (0.0374 sec)
+
+Records: 6  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from products where price = 500;
++--------------+--------+----------------+
+| product_name | price  | stock_quantity |
++--------------+--------+----------------+
+| Keyboard     | 500.00 |              9 |
+| Mouse        | 500.00 |             60 |
++--------------+--------+----------------+
+2 rows in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from products where stock_quantity<10;
++--------------+--------+----------------+
+| product_name | price  | stock_quantity |
++--------------+--------+----------------+
+| Keyboard     | 500.00 |              9 |
++--------------+--------+----------------+
+1 row in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from products where price>1000;
++--------------+----------+----------------+
+| product_name | price    | stock_quantity |
++--------------+----------+----------------+
+| Laptop       | 55000.00 |             15 |
+| Mobile       | 20000.00 |             30 |
++--------------+----------+----------------+
+2 rows in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from products where price<=250;
++--------------+--------+----------------+
+| product_name | price  | stock_quantity |
++--------------+--------+----------------+
+| Headphones   | 250.00 |             50 |
+| pen          | 100.00 |             20 |
++--------------+--------+----------------+
+2 rows in set (0.0014 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from products where stock_quantity>=50;
++--------------+--------+----------------+
+| product_name | price  | stock_quantity |
++--------------+--------+----------------+
+| Headphones   | 250.00 |             50 |
+| Mouse        | 500.00 |             60 |
++--------------+--------+----------------+
+2 rows in set (0.0009 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from products;
++--------------+----------+----------------+
+| product_name | price    | stock_quantity |
++--------------+----------+----------------+
+| Laptop       | 55000.00 |             15 |
+| Mobile       | 20000.00 |             30 |
+| Headphones   |   250.00 |             50 |
+| Keyboard     |   500.00 |              9 |
+| Mouse        |   500.00 |             60 |
+| pen          |   100.00 |             20 |
++--------------+----------+----------------+
+6 rows in set (0.0007 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from products  where product_name <> 'pen';
++--------------+----------+----------------+
+| product_name | price    | stock_quantity |
++--------------+----------+----------------+
+| Laptop       | 55000.00 |             15 |
+| Mobile       | 20000.00 |             30 |
+| Headphones   |   250.00 |             50 |
+| Keyboard     |   500.00 |              9 |
+| Mouse        |   500.00 |             60 |
++--------------+----------+----------------+
+5 rows in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > create table employees(
+                                           -> name varchar(20),
+                                           -> salary int,
+                                           -> department varchar(20),
+                                           -> city varchar(20));
+Query OK, 0 rows affected (0.0603 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > INSERT INTO employees (name, salary, department, city)
+                                           -> VALUES
+                                           -> ('Ravi', 45000, 'Sales', 'Hyderabad'),
+                                           -> ('Sita', 65000, 'Finance', 'Hyderabad'),
+                                           -> ('Arjun', 70000, 'Sales', 'Chennai'),
+                                           -> ('Priya', 55000, 'Finance', 'Bangalore'),
+                                           -> ('Kiran', 62000, 'Sales', 'Hyderabad');
+Query OK, 5 rows affected (0.0388 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+
+MySQL  localhost:33060+ ssl  operator  SQL > select name from employees
+                                           -> where department='sales' AND salary>40000;
++-------+
+| name  |
++-------+
+| Ravi  |
+| Arjun |
+| Kiran |
++-------+
+3 rows in set (0.0012 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select name from employees
+                                           -> where city =  'hyderabad' OR salary>60000;
++-------+
+| name  |
++-------+
+| Ravi  |
+| Sita  |
+| Arjun |
+| Kiran |
++-------+
+4 rows in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select name from employees
+                                           -> where department!='finance';
++-------+
+| name  |
++-------+
+| Ravi  |
+| Arjun |
+| Kiran |
++-------+
+3 rows in set (0.0009 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > create table students(
+                                           -> name varchar(20),
+                                           -> city varchar(20),
+                                           -> marks int,
+                                           -> email varchar(20));
+Query OK, 0 rows affected (0.0606 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > INSERT INTO students (name, city, marks, email)
+                                           -> VALUES
+                                           -> ('Sita', 'Mumbai', 85, 'sita@gmail.com'),
+                                           -> ('Ravi', 'Pune', 78, NULL),
+                                           -> ('Sara', 'Kolkata', 90, 'sara@gmail.com'),
+                                           -> ('Kiran', 'Delhi', 88, 'kiran@gmail.com'),
+                                           -> ('Mona', 'Chennai', 72, NULL);
+
+Query OK, 5 rows affected (0.0386 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from students
+                                           -> where city in ('mumbai','pune','kolkata');
++------+---------+-------+----------------+
+| name | city    | marks | email          |
++------+---------+-------+----------------+
+| Sita | Mumbai  |    85 | sita@gmail.com |
+| Ravi | Pune    |    78 | NULL           |
+| Sara | Kolkata |    90 | sara@gmail.com |
++------+---------+-------+----------------+
+3 rows in set (0.0014 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from students where city not in ('delhi','chennai');
++------+---------+-------+----------------+
+| name | city    | marks | email          |
++------+---------+-------+----------------+
+| Sita | Mumbai  |    85 | sita@gmail.com |
+| Ravi | Pune    |    78 | NULL           |
+| Sara | Kolkata |    90 | sara@gmail.com |
++------+---------+-------+----------------+
+3 rows in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from students where email is NULL;
++------+---------+-------+-------+
+| name | city    | marks | email |
++------+---------+-------+-------+
+| Ravi | Pune    |    78 | NULL  |
+| Mona | Chennai |    72 | NULL  |
++------+---------+-------+-------+
+2 rows in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from students where email is not NULL;
++-------+---------+-------+-----------------+
+| name  | city    | marks | email           |
++-------+---------+-------+-----------------+
+| Sita  | Mumbai  |    85 | sita@gmail.com  |
+| Sara  | Kolkata |    90 | sara@gmail.com  |
+| Kiran | Delhi   |    88 | kiran@gmail.com |
++-------+---------+-------+-----------------+
+3 rows in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from students
+                                           -> where name like 's%';
++------+---------+-------+----------------+
+| name | city    | marks | email          |
++------+---------+-------+----------------+
+| Sita | Mumbai  |    85 | sita@gmail.com |
+| Sara | Kolkata |    90 | sara@gmail.com |
++------+---------+-------+----------------+
+2 rows in set (0.0314 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from students where name like '%a';
++------+---------+-------+----------------+
+| name | city    | marks | email          |
++------+---------+-------+----------------+
+| Sita | Mumbai  |    85 | sita@gmail.com |
+| Sara | Kolkata |    90 | sara@gmail.com |
+| Mona | Chennai |    72 | NULL           |
++------+---------+-------+----------------+
+3 rows in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from students where name like '____';
++------+---------+-------+----------------+
+| name | city    | marks | email          |
++------+---------+-------+----------------+
+| Sita | Mumbai  |    85 | sita@gmail.com |
+| Ravi | Pune    |    78 | NULL           |
+| Sara | Kolkata |    90 | sara@gmail.com |
+| Mona | Chennai |    72 | NULL           |
++------+---------+-------+----------------+
+4 rows in set (0.0012 sec)
+
+ MySQL  localhost:33060+ ssl  operator  SQL > select * from students where name not like 'r%';
++-------+---------+-------+-----------------+
+| name  | city    | marks | email           |
++-------+---------+-------+-----------------+
+| Sita  | Mumbai  |    85 | sita@gmail.com  |
+| Sara  | Kolkata |    90 | sara@gmail.com  |
+| Kiran | Delhi   |    88 | kiran@gmail.com |
+| Mona  | Chennai |    72 | NULL            |
++-------+---------+-------+-----------------+
+4 rows in set (0.0010 sec)
