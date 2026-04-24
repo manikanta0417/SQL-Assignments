@@ -1,0 +1,65 @@
+ TASK-1
+MySQL  localhost:33060+ ssl  operator  SQL > create table user( id int unique, ph_num decimal(12,0) unique);
+Query OK, 0 rows affected (0.0999 sec)
+
+TASK-2
+ MySQL  localhost:33060+ ssl  operator  SQL > alter table students add unique(marks);
+Query OK, 0 rows affected (0.1026 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+TASK-3
+MySQL  localhost:33060+ ssl  operator  SQL > create table studentss( name varchar(20) not null, roll_no int not null, address varchar(20));
+Query OK, 0 rows affected (0.0603 sec)
+
+TASK-4
+ MySQL  localhost:33060+ ssl  operator  SQL > alter table studentss
+                                           -> modify address varchar(20) not null;
+Query OK, 0 rows affected (0.0916 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+TASK-5
+ MySQL  localhost:33060+ ssl  operator  SQL > create table books(
+                                           -> book_id int primary key,
+                                           -> book_name varchar(20) not null,
+                                           -> author varchar(20));
+Query OK, 0 rows affected (0.0550 sec)
+
+TASK-6
+MySQL  localhost:33060+ ssl  operator  SQL > alter table products add primary key(product_id);
+Query OK, 6 rows affected (0.0938 sec)
+
+Records: 6  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  operator  SQL > desc products;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| product_name   | varchar(10)   | NO   | PRI | NULL    |       |
+| price          | decimal(10,2) | YES  |     | NULL    |       |
+| stock_quantity | int           | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+3 rows in set (0.0020 sec)
+
+TASK-7
+MySQL  localhost:33060+ ssl  operator  SQL > create table employees( name varchar(20) not null, age int not null, city varchar(10),constraint check(age>=18 AND age<=60));
+Query OK, 0 rows affected (0.0572 sec)
+
+MySQL  localhost:33060+ ssl  operator  SQL > insert into employees(name,age,city) values('mani',17,'vijayawada');
+ERROR: 3819: Check constraint 'employees_chk_1' is violated.
+
+TASK-8
+ MySQL  localhost:33060+ ssl  operator  SQL > alter table products add constraint check(stock_quantity>0);
+Query OK, 6 rows affected (0.0665 sec)
+
+Records: 6  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:33060+ ssl  operator  SQL > insert into products(product_name,price,stock_quantity) values('books',100,0);
+ERROR: 3819: Check constraint 'products_chk_1' is violated.
+
+
+
+
+
+
+
