@@ -1,0 +1,217 @@
+ or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \c root@localhost
+Creating a session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 18 (X protocol)
+Server version: 8.0.45 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:33060+ ssl  SQL > show databases
+                                 -> show databases;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show databases' at line 2
+ MySQL  localhost:33060+ ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| college_db         |
+| company_db         |
+| information_schema |
+| library_db         |
+| mysql              |
+| performance_schema |
+| school_db          |
+| sys                |
++--------------------+
+8 rows in set (0.0480 sec)
+ MySQL  localhost:33060+ ssl  SQL > use mysql;
+Default schema set to `mysql`.
+Fetching global names, object names from `mysql` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  mysql  SQL > create table appointments(id int,patient_name varchar(50),appointment_date date,appointment_time time);
+Query OK, 0 rows affected (0.1098 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > create table orders(order_id int,item varchar(50),ordered_at datetime,shipped_at timestamp);
+Query OK, 0 rows affected (0.0944 sec)
+
+ MySQL  localhost:33060+ ssl  mysql  SQL > desc students;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(50) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.0026 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > alter table students add city varchar(50);
+Query OK, 0 rows affected (0.1416 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  mysql  SQL > insert into students(id,name,age,city)values(74,'vasanthi',81,'hyd');
+Query OK, 1 row affected (0.0531 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > desc employeees;
++------------+---------------+------+-----+---------+-------+
+| Field      | Type          | Null | Key | Default | Extra |
++------------+---------------+------+-----+---------+-------+
+| EMP_ID     | int           | YES  |     | NULL    |       |
+| EMP_NAME   | varchar(100)  | YES  |     | NULL    |       |
+| SALARY     | decimal(10,2) | YES  |     | NULL    |       |
+| DEPARTMENT | varchar(50)   | YES  |     | NULL    |       |
++------------+---------------+------+-----+---------+-------+
+4 rows in set (0.0511 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > insert into employeees values(88,'ramya',100000,'manager');
+Query OK, 1 row affected (0.0093 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > desc products;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| products_id  | int          | YES  |     | NULL    |       |
+| product_name | varchar(100) | YES  |     | NULL    |       |
+| price        | float        | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+3 rows in set (0.0087 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL >  insert into products values(1,'car',500000),(2,'bike',200000),(3,'mobile',400000);
+Query OK, 3 rows affected (0.1002 sec)
+
+Records: 3  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  mysql  SQL > insert into appointments(appointment_date,appointment_time)values('2026-04-24','07:43:25');
+Query OK, 1 row affected (0.0721 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > desc orders;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| order_id   | int         | YES  |     | NULL    |       |
+| item       | varchar(50) | YES  |     | NULL    |       |
+| ordered_at | datetime    | YES  |     | NULL    |       |
+| shipped_at | timestamp   | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+ use mysql
+Default schema set to `mysql`.
+Fetching global names, object names from `mysql` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  mysql  SQL > desc orders;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| order_id   | int         | YES  |     | NULL    |       |
+| item       | varchar(50) | YES  |     | NULL    |       |
+| ordered_at | datetime    | YES  |     | NULL    |       |
+| shipped_at | timestamp   | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.0027 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > INSERT INTO orders (ordered_at, shipped_at)
+                                        -> VALUES
+                                        -> ('2025-05-23 10:15:30', '2025-05-23 12:45:00'),
+                                        -> ('2026-03-12 09:20:10', '2026-03-12 11:30:43');
+Query OK, 2 rows affected (0.0550 sec)
+ desc students;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(50) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
+| city  | varchar(50) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.0028 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > update students set city='bangalore' where id=2;
+Query OK, 0 rows affected (0.0479 sec)
+
+Rows matched: 0  Changed: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  mysql  SQL > desc students;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(50) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
+| city  | varchar(50) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.0025 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > desc employeees;
++------------+---------------+------+-----+---------+-------+
+| Field      | Type          | Null | Key | Default | Extra |
++------------+---------------+------+-----+---------+-------+
+| EMP_ID     | int           | YES  |     | NULL    |       |
+| EMP_NAME   | varchar(100)  | YES  |     | NULL    |       |
+| SALARY     | decimal(10,2) | YES  |     | NULL    |       |
+| DEPARTMENT | varchar(50)   | YES  |     | NULL    |       |
++------------+---------------+------+-----+---------+-------+
+4 rows in set (0.0025 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > select *from employeees;
++--------+----------+-----------+------------+
+| EMP_ID | EMP_NAME | SALARY    | DEPARTMENT |
++--------+----------+-----------+------------+
+|     88 | ramya    | 100000.00 | manager    |
++--------+----------+-----------+------------+
+1 row in set (0.0018 sec)
+MySQL  localhost:33060+ ssl  mysql  SQL > INSERT INTO employeees (EMP_ID, EMP_NAME, SALARY, DEPARTMENT) VALUES (92, 'sita', 80000, 'HR');
+Query OK, 1 row affected (0.0571 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > update employeees set  salary= salary+5000 where department='HR';
+Query OK, 1 row affected (0.0298 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:33060+ ssl  mysql  SQL > update products set price=0;
+Query OK, 3 rows affected (0.0553 sec)
+
+Rows matched: 3  Changed: 3  Warnings: 0
+
+ MySQL  localhost:33060+ ssl  mysql  SQL > desc appointments;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| id               | int         | YES  |     | NULL    |       |
+| patient_name     | varchar(50) | YES  |     | NULL    |       |
+| appointment_date | date        | YES  |     | NULL    |       |
+| appointment_time | time        | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+4 rows in set (0.0027 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > update appointments set appointment_date='2024-07-20' where id=1;
+Query OK, 0 rows affected (0.0011 sec)
+
+Rows matched: 0  Changed: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  mysql  SQL > select *from appointments;
++------+--------------+------------------+------------------+
+| id   | patient_name | appointment_date | appointment_time |
++------+--------------+------------------+------------------+
+| NULL | NULL         | 2026-04-24       | 07:43:25         |
++------+--------------+------------------+------------------+
+1 row in set (0.0010 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > insert into appointments(id,patient_name)values(1,'rahul');
+Query OK, 1 row affected (0.0544 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > select *from appointments;
++------+--------------+------------------+------------------+
+| id   | patient_name | appointment_date | appointment_time |
++------+--------------+------------------+------------------+
+| NULL | NULL         | 2026-04-24       | 07:43:25         |
+|    1 | rahul        | NULL             | NULL             |
++------+--------------+------------------+------------------+
+2 rows in set (0.0010 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > select *from students;
++----+----------+-----+------+
+| id | name     | age | city |
++----+----------+-----+------+
+| 74 | vasanthi |  81 | hyd  |
++----+----------+-----+------+
+1 row in set (0.0011 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > insert into students(id,name,age,city)values(3,'harini',21,'chennai');
+Query OK, 1 row affected (0.0814 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > delete from students  where id=3;
+Query OK, 1 row affected (0.0886 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > insert into employees(emp_id,emp_name,salary,department)values(27,'diana',50000,'finance');
+ERROR: 1146: Table 'mysql.employees' doesn't exist
+ MySQL  localhost:33060+ ssl  mysql  SQL > insert into employeees(emp_id,emp_name,salary,department)values(27,'diana',50000,'finance');
+Query OK, 1 row affected (0.0534 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > delete from employeees where department='finance';
+Query OK, 1 row affected (0.0543 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > delete from products;
+Query OK, 3 rows affected (0.0599 sec)
+  MySQL  localhost:33060+ ssl  mysql  SQL > select *from orders;
++----------+------+---------------------+---------------------+
+| order_id | item | ordered_at          | shipped_at          |
++----------+------+---------------------+---------------------+
+|     NULL | NULL | 2025-05-23 10:15:30 | 2025-05-23 12:45:00 |
+|     NULL | NULL | 2026-03-12 09:20:10 | 2026-03-12 11:30:43 |
++----------+------+---------------------+---------------------+
+2 rows in set (0.0008 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > delete from orders where order_id is null;
+Query OK, 2 rows affected (0.0535 sec)
+ MySQL  localhost:33060+ ssl  mysql  SQL > select *from orders;
+Empty set (0.0007 sec)
