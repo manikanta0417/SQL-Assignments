@@ -1,0 +1,176 @@
+
+ MySQL  localhost:33060+ ssl  mp  SQL > create table products
+                                     -> (product_id int,
+                                     -> product_name varchar(20),
+                                     -> price decimal(10,2),
+                                     -> discount decimal(5,2),
+                                     -> stock_quantity int);
+Query OK, 0 rows affected (0.1143 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > create table employees(
+                                     -> emp_id int,
+                                     -> name varchar(20),
+                                     -> monthly_salary int,
+                                     -> bonus_percent decimal(5,2));
+Query OK, 0 rows affected (0.0639 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > insert into products (product_id, product_name, price, discount, stock_quantity)
+                                     -> values
+                                     -> (1, 'Laptop', 55000.00, 10.00, 15),
+                                     -> (2, 'Mobile', 20000.00, 5.00, 30),
+                                     -> (3, 'Headphones', 1500.00, 8.50, 50),
+                                     -> (4, 'Keyboard', 800.00, 12.00, 40),
+                                     -> (5, 'Mouse', 500.00, 7.00, 60);
+Query OK, 5 rows affected (0.0164 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select product_id,product_name,price * stock_quantity as total_amount from products;
++------------+--------------+--------------+
+| product_id | product_name | total_amount |
++------------+--------------+--------------+
+|          1 | Laptop       |    825000.00 |
+|          2 | Mobile       |    600000.00 |
+|          3 | Headphones   |     75000.00 |
+|          4 | Keyboard     |     32000.00 |
+|          5 | Mouse        |     30000.00 |
++------------+--------------+--------------+
+5 rows in set (0.0011 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select product_name,price-5 as discounted_price from products;
++--------------+------------------+
+| product_name | discounted_price |
++--------------+------------------+
+| Laptop       |         54995.00 |
+| Mobile       |         19995.00 |
+| Headphones   |          1495.00 |
+| Keyboard     |           795.00 |
+| Mouse        |           495.00 |
++--------------+------------------+
+5 rows in set (0.0107 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select product_name,price*1.10 as new_price from products;
++--------------+------------+
+| product_name | new_price  |
++--------------+------------+
+| Laptop       | 60500.0000 |
+| Mobile       | 22000.0000 |
+| Headphones   |  1650.0000 |
+| Keyboard     |   880.0000 |
+| Mouse        |   550.0000 |
++--------------+------------+
+5 rows in set (0.0333 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > insert into employees (emp_id, name, monthly_salary, bonus_percent)
+                                     -> values
+                                     -> (1, 'Ravi', 30000, 10.00),
+                                     -> (2, 'Sita', 40000, 12.50),
+                                     -> (3, 'Arjun', 35000, 8.00),
+                                     -> (4, 'Priya', 45000, 15.00),
+                                     -> (5, 'Kiran', 25000, 5.50);
+Query OK, 5 rows affected (0.0395 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  m
+p  SQL > select emp_id,name,monthly_salary*12 as annual_salary from employees;
++--------+-------+---------------+
+| emp_id | name  | annual_salary |
++--------+-------+---------------+
+|      1 | Ravi  |        360000 |
+|      2 | Sita  |        480000 |
+|      3 | Arjun |        420000 |
+|      4 | Priya |        540000 |
+|      5 | Kiran |        300000 |
++--------+-------+---------------+
+5 rows in set (0.0322 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select emp_id,name,monthly_salary*(bonus_percent/100)
+                                     -> from employees;
++--------+-------+------------------------------------+
+| emp_id | name  | monthly_salary*(bonus_percent/100) |
++--------+-------+------------------------------------+
+|      1 | Ravi  |                        3000.000000 |
+|      2 | Sita  |                        5000.000000 |
+|      3 | Arjun |                        2800.000000 |
+|      4 | Priya |                        6750.000000 |
+|      5 | Kiran |                        1375.000000 |
++--------+-------+------------------------------------+
+5 rows in set (0.0337 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select emp_id,name,monthly_salary*(bonus_percent/100) as bonus_amount from employees;
++--------+-------+--------------+
+| emp_id | name  | bonus_amount |
++--------+-------+--------------+
+|      1 | Ravi  |  3000.000000 |
+|      2 | Sita  |  5000.000000 |
+|      3 | Arjun |  2800.000000 |
+|      4 | Priya |  6750.000000 |
+|      5 | Kiran |  1375.000000 |
++--------+-------+--------------+
+5 rows in set (0.0316 sec)
+
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select product_id, product_id%2 as remiander from products;
++------------+-----------+
+| product_id | remiander |
++------------+-----------+
+|          1 |         1 |
+|          2 |         0 |
+|          3 |         1 |
+|          4 |         0 |
+|          5 |         1 |
++------------+-----------+
+5 rows in set (0.0010 sec)
+ MySQL  localhost:33060+ ssl  mp  SQL > select product_name,stock_quantity/4 as shared_stock from products;
++--------------+--------------+
+| product_name | shared_stock |
++--------------+--------------+
+| Laptop       |       3.7500 |
+| Mobile       |       7.5000 |
+| Headphones   |      12.5000 |
+| Keyboard     |      10.0000 |
+| Mouse        |      15.0000 |
++--------------+--------------+
+5 rows in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select product_name,price-2 as profit from products;
++--------------+----------+
+| product_name | profit   |
++--------------+----------+
+| Laptop       | 54998.00 |
+| Mobile       | 19998.00 |
+| Headphones   |  1498.00 |
+| Keyboard     |   798.00 |
+| Mouse        |   498.00 |
++--------------+----------+
+5 rows in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select emp_id,name,monthly_salary+200 as total_take_home from employees;
++--------+-------+-----------------+
+| emp_id | name  | total_take_home |
++--------+-------+-----------------+
+|      1 | Ravi  |           30200 |
+|      2 | Sita  |           40200 |
+|      3 | Arjun |           35200 |
+|      4 | Priya |           45200 |
+|      5 | Kiran |           25200 |
++--------+-------+-----------------+
+5 rows in set (0.0009 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select product_id,product_name,(price*50)-100 as final_price
+                                     -> from products;
+
+
+
+
+
++------------+--------------+-------------+
+| product_id | product_name | final_price |
++------------+--------------+-------------+
+|          1 | Laptop       |  2749900.00 |
+|          2 | Mobile       |   999900.00 |
+|          3 | Headphones   |    74900.00 |
+|          4 | Keyboard     |    39900.00 |
+|          5 | Mouse        |    24900.00 |
++------------+--------------+-------------+
+5 rows in set (0.0010 sec)
+
