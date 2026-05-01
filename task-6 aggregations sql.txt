@@ -1,0 +1,80 @@
+ MySQL  localhost:33060+ ssl  mp  SQL > select count(*) from employees;
++----------+
+| count(*) |
++----------+
+|       10 |
++----------+
+1 row in set (0.0140 sec)
+
+MySQL  localhost:33060+ ssl  mp  SQL > select count(*) from employees where salary>0;
++----------+
+| count(*) |
++----------+
+|        9 |
++----------+
+1 row in set (0.0011 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select count(distinct department) from employees ;
++----------------------------+
+| count(distinct department) |
++----------------------------+
+|                          4 |
++----------------------------+
+1 row in set (0.0308 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select sum(salary) as total_pay from employees;
++-----------+
+| total_pay |
++-----------+
+| 532000.00 |
++-----------+
+1 row in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select avg(salary) as avg_pay from employees;
++--------------+
+| avg_pay      |
++--------------+
+| 59111.111111 |
++--------------+
+1 row in set (0.0009 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select sum(distinct bonus) as total_dist_bonus from employees;
++------------------+
+| total_dist_bonus |
++------------------+
+|         39500.00 |
++------------------+
+1 row in set (0.0011 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select max(salary) as max_sal from employees;
++----------+
+| max_sal  |
++----------+
+| 75000.00 |
++----------+
+1 row in set (0.0009 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select min(salary) as min_sal from employees;
++----------+
+| min_sal  |
++----------+
+| 45000.00 |
++----------+
+1 row in set (0.0010 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select sum(salary+bonus) as total_payment from employees;
++---------------+
+| total_payment |
++---------------+
+|     571500.00 |
++---------------+
+1 row in set (0.0011 sec)
+
+ MySQL  localhost:33060+ ssl  mp  SQL > select avg(salary*0.9) as avg_sal_aft_tax from employees;
++---------------+
+| avg_pay       |
++---------------+
+| 53200.0000000 |
++---------------+
+1 row in set (0.0311 sec)
+
