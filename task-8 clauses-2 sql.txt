@@ -1,0 +1,147 @@
+ MySQL  localhost:33060+ ssl  pm  SQL > select  customer_id from orders group by customer_id having count(*)>3;
++-------------+
+| customer_id |
++-------------+
+|         101 |
+|         103 |
++-------------+
+2 rows in set (0.0127 sec)
+
+ MySQL  localhost:33060+ ssl  pm  SQL > select category from products group by category having sum(price)>50000;
++-------------+
+| category    |
++-------------+
+| Electronics |
++-------------+
+1 row in set (0.0332 sec)
+
+  MySQL  localhost:33060+ ssl  pm  SQL > select salesperson_id from sales group by salesperson_id having count(distinct product_id)>=3 and sum(quantity)>100;
++----------------+
+| salesperson_id |
++----------------+
+|            201 |
+|            203 |
++----------------+
+2 rows in set (0.0058 sec)
+
+ MySQL  localhost:33060+ ssl  pm  SQL > select * from employees order by salary desc;
++--------+-------+-------------+----------+
+| emp_id | name  | department  | salary   |
++--------+-------+-------------+----------+
+|      6 | Divya | Engineering | 95000.00 |
+|      3 | Ravi  | Engineering | 90000.00 |
+|      1 | Amit  | Engineering | 80000.00 |
+|      2 | Anil  | Engineering | 75000.00 |
+|      5 | Kiran | Finance     | 60000.00 |
+|      7 | Meena | HR          | 55000.00 |
+|      4 | Sneha | HR          | 50000.00 |
++--------+-------+-------------+----------+
+7 rows in set (0.0052 sec)
+
+ MySQL  localhost:33060+ ssl  pm  SQL > select product_name,price*0.85 as after_disc from products order by after_disc asc;
++--------------+------------+
+| product_name | after_disc |
++--------------+------------+
+| Bag          |  4250.0000 |
+| Watch        |  6800.0000 |
+| Chair        |  8500.0000 |
+| Table        | 12750.0000 |
+| Sofa         | 21250.0000 |
+| Phone        | 25500.0000 |
+| TV           | 34000.0000 |
+| Laptop       | 51000.0000 |
++--------------+------------+
+8 rows in set (0.0098 sec)
+
+ MySQL  localhost:33060+ ssl  pm  SQL > select name,grade,score from students order by grade asc,score desc;
++--------+-------+-------+
+| name   | grade | score |
++--------+-------+-------+
+| Asha   | A     |    90 |
+| Bala   | A     |    85 |
+| Farhan | A     |  NULL |
+| Chiru  | B     |    70 |
+| Deepa  | B     |  NULL |
+| Gita   | C     |    75 |
+| Esha   | C     |    60 |
++--------+-------+-------+
+7 rows in set (0.0328 sec)
+
+ MySQL  localhost:33060+ ssl  pm  SQL > select * from customers limit 5;
++-------------+-------+
+| customer_id | name  |
++-------------+-------+
+|           1 | Amit  |
+|           2 | Anil  |
+|           3 | Ravi  |
+|           4 | Sneha |
+|           5 | Kiran |
++-------------+-------+
+5 rows in set (0.0329 sec)
+
+ MySQL  localhost:33060+ ssl  pm  SQL > select * from products order by price desc limit 3;
++------------+--------------+-------------+----------+
+| product_id | product_name | category    | price    |
++------------+--------------+-------------+----------+
+|          1 | Laptop       | Electronics | 60000.00 |
+|          3 | TV           | Electronics | 40000.00 |
+|          2 | Phone        | Electronics | 30000.00 |
++------------+--------------+-------------+----------+
+3 rows in set (0.0039 sec)
+
+MySQL  localhost:33060+ ssl  pm  SQL > select * from employees where department = "Engineering" order by salary desc limit 3;
++--------+-------+-------------+----------+
+| emp_id | name  | department  | salary   |
++--------+-------+-------------+----------+
+|      6 | Divya | Engineering | 95000.00 |
+|      3 | Ravi  | Engineering | 90000.00 |
+|      1 | Amit  | Engineering | 80000.00 |
++--------+-------+-------------+----------+
+3 rows in set (0.0058 sec)
+
+ MySQL  localhost:33060+ ssl  pm  SQL > select * from students limit 5 offset 5;
++------------+--------+-------+-------+
+| student_id | name   | grade | score |
++------------+--------+-------+-------+
+|          6 | Farhan | A     |  NULL |
+|          7 | Gita   | C     |    75 |
++------------+--------+-------+-------+
+2 rows in set (0.0006 sec)
+
+ MySQL  localhost:33060+ ssl  pm  SQL > select * from products limit 8 offset 24;
++------------+--------------+---------+
+| product_id | product_name | price   |
++------------+--------------+---------+
+|         25 | Bag          | 2000.00 |
+|         26 | Shoes        | 3000.00 |
+|         27 | T-Shirt      | 1000.00 |
+|         28 | Jeans        | 2000.00 |
+|         29 | Jacket       | 4000.00 |
+|         30 | Cap          |  500.00 |
+|         31 | Sunglasses   | 1500.00 |
+|         32 | Wallet       |  800.00 |
++------------+--------------+---------+
+8 rows in set (0.0008 sec)
+
+ MySQL  localhost:33060+ ssl  pm  SQL > select * from orders order by order_date desc limit 10 offset 20;
++----------+-------------+------------+---------+
+| order_id | customer_id | order_date | amount  |
++----------+-------------+------------+---------+
+|       10 |         105 | 2024-01-10 | 1400.00 |
+|        9 |         104 | 2024-01-09 | 1300.00 |
+|        8 |         103 | 2024-01-08 | 1200.00 |
+|        7 |         102 | 2024-01-07 | 1100.00 |
+|        6 |         101 | 2024-01-06 | 1000.00 |
+|        5 |         105 | 2024-01-05 |  900.00 |
+|        4 |         104 | 2024-01-04 |  800.00 |
+|        3 |         103 | 2024-01-03 |  700.00 |
+|        2 |         102 | 2024-01-02 |  600.00 |
+|        1 |         101 | 2024-01-01 |  500.00 |
++----------+-------------+------------+---------+
+10 rows in set (0.0008 sec)
+
+
+
+
+
+
