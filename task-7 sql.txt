@@ -1,0 +1,137 @@
+MySQL  localhost:33060+ ssl  d13r  SQL > select * from employees where salary>40000;
++--------+--------+----------+------------+------------+-----+------------+---------+
+| emp_id | name   | salary   | department | job_role   | age | manager_id | bonus   |
++--------+--------+----------+------------+------------+-----+------------+---------+
+|      1 | Amit   | 50000.00 | IT         | Developer  |  28 |        101 | 5000.00 |
+|      2 | Anjali | 42000.00 | HR         | Recruiter  |  32 |       NULL | 3000.00 |
+|      4 | Bharat | 60000.00 | IT         | Manager    |  40 |       NULL | 8000.00 |
+|      5 | Akash  | 45000.00 | Finance    | Accountant |  27 |        103 | 2500.00 |
+|      7 | Asha   | 70000.00 | IT         | Architect  |  34 |        104 | 9000.00 |
+|      9 | Anil   | 52000.00 | Finance    | Manager    |  36 |       NULL | 7000.00 |
++--------+--------+----------+------------+------------+-----+------------+---------+
+6 rows in set (0.0012 sec)
+
+ MySQL  localhost:33060+ ssl  d13r  SQL > select * from employees where name like 'A%';
++--------+--------+----------+------------+------------+-----+------------+---------+
+| emp_id | name   | salary   | department | job_role   | age | manager_id | bonus   |
++--------+--------+----------+------------+------------+-----+------------+---------+
+|      1 | Amit   | 50000.00 | IT         | Developer  |  28 |        101 | 5000.00 |
+|      2 | Anjali | 42000.00 | HR         | Recruiter  |  32 |       NULL | 3000.00 |
+|      3 | Arun   | 35000.00 | Finance    | Analyst    |  30 |        102 | 2000.00 |
+|      5 | Akash  | 45000.00 | Finance    | Accountant |  27 |        103 | 2500.00 |
+|      7 | Asha   | 70000.00 | IT         | Architect  |  34 |        104 | 9000.00 |
+|      9 | Anil   | 52000.00 | Finance    | Manager    |  36 |       NULL | 7000.00 |
++--------+--------+----------+------------+------------+-----+------------+---------+
+6 rows in set (0.0011 sec)
+
+ MySQL  localhost:33060+ ssl  d13r  SQL > select * from employees where department in ('HR','Finance');
++--------+--------+----------+------------+-------------+-----+------------+---------+
+| emp_id | name   | salary   | department | job_role    | age | manager_id | bonus   |
++--------+--------+----------+------------+-------------+-----+------------+---------+
+|      2 | Anjali | 42000.00 | HR         | Recruiter   |  32 |       NULL | 3000.00 |
+|      3 | Arun   | 35000.00 | Finance    | Analyst     |  30 |        102 | 2000.00 |
+|      5 | Akash  | 45000.00 | Finance    | Accountant  |  27 |        103 | 2500.00 |
+|      6 | Divya  | 38000.00 | HR         | Coordinator |  29 |        101 | 1500.00 |
+|      8 | Kiran  | 25000.00 | HR         | Assistant   |  24 |       NULL | 1000.00 |
+|      9 | Anil   | 52000.00 | Finance    | Manager     |  36 |       NULL | 7000.00 |
++--------+--------+----------+------------+-------------+-----+------------+---------+
+6 rows in set (0.0015 sec)
+
+ MySQL  localhost:33060+ ssl  d13r  SQL > select * from employees where manager_id is null;
++--------+--------+----------+------------+-----------+-----+------------+---------+
+| emp_id | name   | salary   | department | job_role  | age | manager_id | bonus   |
++--------+--------+----------+------------+-----------+-----+------------+---------+
+|      2 | Anjali | 42000.00 | HR         | Recruiter |  32 |       NULL | 3000.00 |
+|      4 | Bharat | 60000.00 | IT         | Manager   |  40 |       NULL | 8000.00 |
+|      8 | Kiran  | 25000.00 | HR         | Assistant |  24 |       NULL | 1000.00 |
+|      9 | Anil   | 52000.00 | Finance    | Manager   |  36 |       NULL | 7000.00 |
++--------+--------+----------+------------+-----------+-----+------------+---------+
+4 rows in set (0.0012 sec)
+
+ MySQL  localhost:33060+ ssl  d13r  SQL > select department,count(*) from employees where salary>30000 group by department;
++------------+----------+
+| department | count(*) |
++------------+----------+
+| IT         |        3 |
+| HR         |        2 |
+| Finance    |        3 |
++------------+----------+
+3 rows in set (0.0013 sec)
+
+ MySQL  localhost:33060+ ssl  d13r  SQL > select job_role,department,avg(salary) from employees where department ="IT" group by job_role;
++-----------+------------+--------------+
+| job_role  | department | avg(salary)  |
++-----------+------------+--------------+
+| Developer | IT         | 50000.000000 |
+| Manager   | IT         | 60000.000000 |
+| Architect | IT         | 70000.000000 |
+| Tester    | IT         | 30000.000000 |
++-----------+------------+--------------+
+4 rows in set (0.0033 sec)
+
+ MySQL  localhost:33060+ ssl  d13r  SQL > select department,job_role,sum(salary) from employees where age<35 group by department,job_role;
++------------+-------------+-------------+
+| department | job_role    | sum(salary) |
++------------+-------------+-------------+
+| IT         | Developer   |    50000.00 |
+| HR         | Recruiter   |    42000.00 |
+| Finance    | Analyst     |    35000.00 |
+| Finance    | Accountant  |    45000.00 |
+| HR         | Coordinator |    38000.00 |
+| IT         | Architect   |    70000.00 |
+| HR         | Assistant   |    25000.00 |
+| IT         | Tester      |    30000.00 |
++------------+-------------+-------------+
+8 rows in set (0.0013 sec)
+
+ySQL  localhost:33060+ ssl  d13r  SQL > select department,sum(salary) from employees group by department;
++------------+-------------+
+| department | sum(salary) |
++------------+-------------+
+| IT         |   270000.00 |
+| HR         |   105000.00 |
+| Finance    |   132000.00 |
++------------+-------------+
+3 rows in set (0.0014 sec)
+
+ MySQL  localhost:33060+ ssl  d13r  SQL > select department,count(*) as no_of_emp from employees group by department;
++------------+-----------+
+| department | no_of_emp |
++------------+-----------+
+| IT         |         5 |
+| HR         |         3 |
+| Finance    |         3 |
++------------+-----------+
+3 rows in set (0.0008 sec)
+
+ MySQL  localhost:33060+ ssl  d13r  SQL > select department,avg(salary) as avg_sal from employees group by department;
++------------+--------------+
+| department | avg_sal      |
++------------+--------------+
+| IT         | 54000.000000 |
+| HR         | 35000.000000 |
+| Finance    | 44000.000000 |
++------------+--------------+
+3 rows in set (0.0011 sec)
+
+ MySQL  localhost:33060+ ssl  d13r  SQL > select department,job_role,count(*) as no_of_emp from employees group by department,job_role;
++------------+-------------+-----------+
+| department | job_role    | no_of_emp |
++------------+-------------+-----------+
+| IT         | Developer   |         1 |
+| HR         | Recruiter   |         1 |
+| Finance    | Analyst     |         1 |
+| IT         | Manager     |         1 |
+| Finance    | Accountant  |         1 |
+| HR         | Coordinator |         1 |
+| IT         | Architect   |         1 |
+| HR         | Assistant   |         1 |
+| Finance    | Manager     |         1 |
+| IT         | Tester      |         1 |
++------------+-------------+-----------+
+10 rows in set (0.0012 sec)
+
+
+
+
+
